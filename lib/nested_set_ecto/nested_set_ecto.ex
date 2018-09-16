@@ -27,7 +27,9 @@ defmodule NestedSetEcto do
       #
       ########################################
             
-      def insert(%__MODULE__{} = resource, attrs), do: insert(resource, attrs, nil)
+      def insert(%__MODULE__{} = resource, attrs) do 
+        new_changeset(%__MODULE__{} = resource, attrs)
+      end
   
       def insert(%__MODULE__{} = resource, attrs, %__MODULE__{rgt: rgt} = parent) do
         new_resource = resource 
@@ -42,10 +44,7 @@ defmodule NestedSetEcto do
         |> Multi.update_all(:update_lft, update_lft_query, [])
         |> Multi.insert(:insert_resource, new_resource)
       end
-      
-      def insert(%__MODULE__{} = resource, attrs, _) do
-        new_changeset(%__MODULE__{} = resource, attrs)
-      end
+      def insert(%__MODULE__{} = resource, attrs, _), do: insert(%__MODULE__{} = resource, attrs)
   
       # YOU NEED TO PASS A RESOURCE UP TO DATE WITH PRELOADED DATA! 
       def delete(%__MODULE__{lft: lft, rgt: rgt} = resource) do
