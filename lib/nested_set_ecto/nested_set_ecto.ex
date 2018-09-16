@@ -126,6 +126,7 @@ defmodule NestedSetEcto do
               diff = b_rgt + 1 - lft
               [{lft, rgt, diff}, {b_rgt + 1, lft - 1, width}]
             else
+              # From left to right
               diff = b_rgt - rgt
               [{lft, rgt, diff}, {rgt + 1, b_rgt, -width}]
             end
@@ -168,8 +169,9 @@ defmodule NestedSetEcto do
               diff = b_lft - lft
               [{lft, rgt, diff}, {b_lft, lft - 1, width}]
             else
-              diff = b_lft - rgt
-              [{lft, rgt, diff}, {rgt + 1, b_lft, -width}]
+              # From left to right
+              diff = b_lft - 1 - rgt
+              [{lft, rgt, diff}, {rgt + 1, b_lft - 1, -width}]
             end
         
             # Update lft and rgt from fragments
