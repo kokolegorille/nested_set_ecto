@@ -22,7 +22,7 @@ defmodule NestedSetEcto.MixProject do
   defp deps do
     [
       {:ecto, "~> 2.2"},
-      {:credo, "~> 0.10.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 0.10.0", only: [:dev, :test], runtime: false}
     ]
   end
 end
